@@ -11,8 +11,9 @@ router.post('/register', userController.register);
 // User login - POST /api/users/login
 router.post('/login', userController.login);
 
-// Image upload - POST /api/users/upload-profile
+// Profile image upload - POST /api/users/upload-profile
 router.post('/upload-profile', auth, parser.single('image'), async (req, res) => {
+  await User.findByIdAndUpdate(req.user.id, { profileImage: req.file.path });
   res.json({ imageUrl: req.file.path });
 });
 
