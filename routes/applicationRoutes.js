@@ -6,9 +6,6 @@ const role = require('../middleware/role');
 const parser = require('../config/multer');
 
 // Candidate applies to job POST /api/applications/apply
-router.post('/apply', auth, role(['candidate', 'employer']), applicationController.applyToJob);
-
-// Upload resume for job POST /api/applications/apply
 router.post('/apply', auth, role(['candidate', 'employer']), parser.single('resume'), applicationController.applyToJob);
 
 // Employer GET /api/applications/employer/all
