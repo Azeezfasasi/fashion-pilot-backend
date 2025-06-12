@@ -2,12 +2,25 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const auth = require('../middleware/auth');
+const parser = require('../config/multer');
 
 // User registration - POST /api/users/register
 router.post('/register', userController.register);
 
 // User login - POST /api/users/login
 router.post('/login', userController.login);
+
+// Image upload - POST /api/users/upload-profile
+router.post('/upload-profile', auth, parser.single('image'), async (req, res) => {
+  res.json({ imageUrl: req.file.path });
+});
+
+// Company logo upload - POST /api/users/upload-logo
+router.post('/upload-logo', auth, parser.single('logo'), async (req, res) => {
+  // Save logo URL to employer profile
+  await User.findByIdAndUpdate(req.user.id, { logo: req.file.path });
+  res.json({ logoUrl: req.file.path });
+});
 
 // Verify - GET /api/users/verify
 router.get('/verify', userController.verifyEmail);
