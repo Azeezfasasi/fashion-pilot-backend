@@ -15,7 +15,7 @@ app.use(cors({
   origin: [
     'http://localhost:3000', // your local frontend
     'http://localhost:5173', // Vite default
-    'https://fashion-pilot.netlify.app/' // your deployed frontend
+    'https://fashion-pilot.netlify.app' // your deployed frontend
   ],
   credentials: true
 }));
