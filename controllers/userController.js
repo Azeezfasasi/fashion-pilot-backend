@@ -110,14 +110,6 @@ exports.removeFavoriteJob = async (req, res) => {
 };
 
 // Get all favorite jobs (populated)
-// exports.getFavoriteJobs = async (req, res) => {
-//   try {
-//     const user = await User.findById(req.user.id).populate('favoriteJobs');
-//     res.json(user.favoriteJobs);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
 exports.getFavoriteJobs = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).populate({

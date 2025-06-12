@@ -39,7 +39,7 @@ exports.getJobs = async (req, res) => {
 
 exports.getJob = async (req, res) => {
   try {
-    const job = await Job.findById(req.params.id).populate('employer', 'name company');
+    const job = await Job.findById(req.params.id).populate('employer', 'name company logo');
     if (!job) return res.status(404).json({ error: 'Job not found' });
     res.json(job);
   } catch (err) {
