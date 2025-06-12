@@ -22,6 +22,13 @@ router.post('/upload-logo', auth, parser.single('logo'), async (req, res) => {
   res.json({ logoUrl: req.file.path });
 });
 
+// Company banner upload - POST /api/users/upload-banner
+router.post('/upload-banner', auth, parser.single('banner'), async (req, res) => {
+  // Save banner URL to employer profile
+  await User.findByIdAndUpdate(req.user.id, { bannerImage: req.file.path });
+  res.json({ bannerUrl: req.file.path });
+});
+
 // Verify - GET /api/users/verify
 router.get('/verify', userController.verifyEmail);
 

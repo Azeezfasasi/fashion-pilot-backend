@@ -1,25 +1,6 @@
 const Application = require('../models/Application');
 const Job = require('../models/Job');
 
-// exports.applyToJob = async (req, res) => {
-//   try {
-//     const { jobId, coverLetter, resume } = req.body;
-//     if (!jobId) return res.status(400).json({ error: 'jobId is required' }); // <-- Add this line
-//     // Prevent duplicate applications
-//     const existing = await Application.findOne({ candidate: req.user.id, job: jobId });
-//     if (existing) return res.status(400).json({ error: 'Already applied to this job' });
-//     const application = new Application({
-//       candidate: req.user.id,
-//       job: jobId,
-//       coverLetter,
-//       resume,
-//     });
-//     await application.save();
-//     res.status(201).json(application);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
 exports.applyToJob = async (req, res) => {
   try {
     const { jobId, coverLetter } = req.body;
