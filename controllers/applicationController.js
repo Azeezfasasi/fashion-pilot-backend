@@ -31,10 +31,26 @@ exports.getApplicationsForJob = async (req, res) => {
   }
 };
 
+// exports.getCandidateApplications = async (req, res) => {
+//   try {
+//     const applications = await Application.find({ candidate: req.user.id })
+//       .populate('job');
+//     res.json(applications);
+//   } 
+//   catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
 exports.getCandidateApplications = async (req, res) => {
   try {
     const applications = await Application.find({ candidate: req.user.id })
-      .populate('job');
+      .populate({
+        path: 'job',
+        populate: {
+          path: 'employer',
+          select: 'logo company',
+        }
+      });
     res.json(applications);
   } catch (err) {
     res.status(500).json({ error: err.message });
