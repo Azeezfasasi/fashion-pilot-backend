@@ -5,7 +5,7 @@ const auth = require('../middleware/auth');
 const role = require('../middleware/role');
 
 // Candidate applies to job POST /api/applications/apply
-router.post('/apply', auth, role(['candidate']), applicationController.applyToJob);
+router.post('/apply', auth, role(['candidate', 'employer']), applicationController.applyToJob);
 
 // Employer GET /api/applications/employer/all
 router.get('/employer/all', auth, role('employer'), applicationController.getAllEmployerApplications);
