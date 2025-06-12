@@ -11,14 +11,11 @@ const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 
 // Middleware
-// app.use(cors());
-// const cors = require('cors');
-
 app.use(cors({
   origin: [
     'http://localhost:5000', // your local frontend
     'http://localhost:5173', // Vite default
-    'https://fashion-pilot-backend.onrender.com' // your deployed frontend
+    'https://fashion-pilot.netlify.app/' // your deployed frontend
   ],
   credentials: true
 }));
